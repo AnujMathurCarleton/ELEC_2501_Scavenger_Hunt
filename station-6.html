@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Station 6 — AC Waveforms</title>
+<style>
+  :root {
+    --bg: #f7f5f2; --card-bg: #ffffff; --text: #1245c9; --muted: #4a63b0;
+    --accent: #1245c9; --accent-soft: #dbe6fb; --border: #cdd9f5;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10131c; --card-bg: #171b28; --text: #9db4ff; --muted: #7d94dd;
+      --accent: #6d94ff; --accent-soft: #1e2a4a; --border: #2a3358;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10131c; --card-bg: #171b28; --text: #9db4ff; --muted: #7d94dd;
+    --accent: #6d94ff; --accent-soft: #1e2a4a; --border: #2a3358;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text); font-family: var(--font-sans);
+    margin: 0; padding: 2rem 1rem; display: flex; justify-content: center; min-height: 100vh;
+  }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+    max-width: 680px; width: 100%; padding: 2rem;
+  }
+  .eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin: 0 0 0.4rem;
+  }
+  h1 { font-family: var(--font-serif); font-size: 1.5rem; margin: 0 0 1.4rem; line-height: 1.3; }
+  .diagram { display: flex; justify-content: center; margin: 0 0 1.4rem; }
+  .diagram img { max-width: 100%; height: auto; border-radius: 8px; background: #fff; padding: 0.4rem; }
+  .diagram-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 0 0 1.4rem; }
+  .diagram-row figure { margin: 0; text-align: center; flex: 1; min-width: 220px; }
+  .diagram-row img { max-width: 100%; height: auto; border-radius: 8px; background: #fff; padding: 0.4rem; }
+  .diagram-row figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; }
+  .subhead {
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--accent); text-transform: uppercase; margin: 1.4rem 0 0.6rem;
+  }
+  .subhead:first-of-type { margin-top: 0; }
+  ol.questions, ul.questions { padding-left: 1.3rem; margin: 0 0 0.5rem; }
+  ol.questions li, ul.questions li { font-size: 1.05rem; line-height: 1.6; margin-bottom: 0.9rem; }
+  ol.questions li:last-child, ul.questions li:last-child { margin-bottom: 0; }
+  p.note {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.9rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 1.2rem 0 0;
+  }
+  p.lead { font-size: 1.05rem; line-height: 1.6; margin: 0 0 1.2rem; }
+  .eq {
+    font-family: var(--font-serif); font-size: 1.25rem; text-align: center;
+    background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
+    margin: 0 0 1rem;
+  }
+
+  .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
+  .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
+  .gate-wrap p { color: var(--muted); font-size: 0.95rem; margin: 0 0 1.2rem; max-width: 380px; }
+  .gate-row { display: flex; gap: 0.6rem; width: 100%; max-width: 320px; }
+  .gate-row input {
+    flex: 1; min-width: 0; padding: 0.7rem 0.9rem; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .gate-row button {
+    padding: 0.7rem 1.2rem; border-radius: 8px; border: none; background: var(--accent);
+    color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer;
+  }
+  .gate-row button:hover { opacity: 0.92; }
+  .gate-error { color: var(--accent); font-size: 0.88rem; margin-top: 0.8rem; min-height: 1.2em; }
+</style>
+</head>
+<body>
+<div class="card">
+  <p class="eyebrow">Station 6 &middot; AC Waveforms</p>
+  <h1>Peak, RMS &amp; Peak-to-Peak</h1>
+
+  <div id="gate" class="gate-wrap" style="display:none;">
+    <div class="lock">&#128274;</div>
+    <p>This station is locked. Scan the station&rsquo;s QR code, or enter the password your instructor gave you.</p>
+    <div class="gate-row">
+      <input type="text" id="gateInput" placeholder="Password" autocomplete="off" autocapitalize="characters">
+      <button id="gateBtn">Unlock</button>
+    </div>
+    <div class="gate-error" id="gateError"></div>
+  </div>
+
+  <div id="content" style="display:none;">
+
+  <p class="lead">Recall: <strong>V<sub>RMS</sub> = V<sub>p</sub> / &radic;2</strong> for a sine wave.</p>
+  <ol class="questions">
+    <li>A sine wave has a peak-to-peak voltage of <strong>4</strong>. Find <strong>V<sub>p</sub></strong>.</li>
+    <li>Find <strong>V<sub>p</sub></strong> for a sine wave with <strong>V<sub>RMS</sub> = 17.6777</strong>.</li>
+    <li>Find <strong>V<sub>RMS</sub></strong> for a sine wave with <strong>V<sub>pp</sub> = 189.476</strong>.</li>
+    <li>Find <strong>V<sub>RMS</sub></strong> for a <strong>square</strong> wave with <strong>V<sub>p</sub> = 1</strong>.</li>
+  </ol>
+  <p class="note">Your station code is <strong>a &times; b &times; c &times; d</strong>, using your answers to parts 1&ndash;4 above.</p>
+
+  </div>
+</div>
+<script>
+(function() {
+  var EXPECTED = "745c4d27a2375ecadfb7da7138ae0235fdc018d90895dd8ae470c122188df924";
+
+  function sha256Hex(str) {
+    var enc = new TextEncoder().encode(str);
+    return crypto.subtle.digest("SHA-256", enc).then(function(buf) {
+      var bytes = Array.from(new Uint8Array(buf));
+      return bytes.map(function(b) { return b.toString(16).padStart(2, "0"); }).join("");
+    });
+  }
+
+  function unlock() {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  }
+
+  function showGate() {
+    document.getElementById("gate").style.display = "flex";
+  }
+
+  function tryValue(raw) {
+    var val = (raw || "").trim().toUpperCase();
+    if (!val) return Promise.resolve(false);
+    return sha256Hex(val).then(function(h) {
+      if (h === EXPECTED) { unlock(); return true; }
+      return false;
+    });
+  }
+
+  var fragment = decodeURIComponent(location.hash.replace(/^#/, ""));
+  tryValue(fragment).then(function(ok) {
+    if (!ok) {
+      showGate();
+      var btn = document.getElementById("gateBtn");
+      var input = document.getElementById("gateInput");
+      var err = document.getElementById("gateError");
+      function attempt() {
+        tryValue(input.value).then(function(ok2) {
+          if (!ok2) { err.textContent = "Incorrect password. Try again."; }
+        });
+      }
+      btn.addEventListener("click", attempt);
+      input.addEventListener("keydown", function(e) { if (e.key === "Enter") attempt(); });
+    }
+  });
+})();
+</script>
+</body>
+</html>
