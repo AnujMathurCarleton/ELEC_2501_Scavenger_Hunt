@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -99,9 +110,13 @@
     <li>Using this relationship, determine the current <strong>I</strong> that flows when a total charge of <strong>10 coulombs</strong> passes a given point over a period of <strong>10 seconds</strong>.</li>
     <li>Determine the total charge <strong>Q</strong> that has flowed if a steady current of <strong>2 amperes</strong> takes <strong>3 seconds</strong> to deliver it.</li>
     <li>Determine how much time <strong>t</strong> it takes for a charge of <strong>50 coulombs</strong> to flow past a point when the current is held at <strong>10 amperes</strong>.</li>
-    <li>The standard metric prefixes, listed here from smallest to largest, are: femto (f), pico (p), nano (n), micro (&micro;), milli (m), the base unit (1), kilo (k), mega (M), giga (G), and tera (T). Using this ordering, evaluate the expression <strong>&minus;log&#8321;&#8320;(1p)</strong> &mdash; that is, find the power of ten that the pico prefix represents, expressed as a positive number.</li>
+    <li>The standard metric prefixes, listed here from smallest to largest, are: femto (f), pico (p), nano (n), micro (&micro;), milli (m), the base unit (1), kilo (k), mega (M), giga (G), and tera (T). Using this ordering, give the <strong>absolute value of the power of 10</strong> that the pico (p) prefix represents.</li>
   </ol>
   <p class="note">Your station code is <strong>A + B + C + D</strong>, using your answers to parts 1&ndash;4 above.</p>
+  <details class="hint">
+    <summary>Reveal Answer</summary>
+    <p>The station code is <strong>24</strong>. Look for <strong>24</strong> on the decode sheet for the next location.</p>
+  </details>
 
   </div>
 </div>

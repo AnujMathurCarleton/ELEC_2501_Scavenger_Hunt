@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -107,7 +118,14 @@
   <p class="lead">Circuit 1: a <strong>15 V source</strong> drives three parallel <strong>5 &#937;</strong> resistors, carrying currents I<sub>A</sub>, I<sub>B</sub>, I<sub>C</sub>. Find each.</p>
   <p class="lead">Circuit 2: one of those branch currents feeds a current divider between a <strong>2 &#937;</strong> and <strong>1 &#937;</strong> resistor, producing the current I<sub>D</sub> shown. Find I<sub>D</sub>.</p>
   <p class="note">Your station code is I<sub>A</sub>, I<sub>B</sub>, I<sub>C</sub>, I<sub>D</sub> written together as one number. Hint: the code uses all 4 numbers.</p>
-  <p class="note">Hint: rotate to get the answer.</p>
+  <details class="hint">
+    <summary>Hint 1</summary>
+    <p>Rotate to get the answer &mdash; when rotated, it should resemble a word you can find on the decode sheet.</p>
+  </details>
+  <details class="hint">
+    <summary>Answer</summary>
+    <p>The answer is IEEE.</p>
+  </details>
 
   </div>
 </div>

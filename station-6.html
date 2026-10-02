@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -102,6 +113,18 @@
     <li>Find <strong>V<sub>RMS</sub></strong> for a <strong>square</strong> wave with <strong>V<sub>p</sub> = 1</strong>.</li>
   </ol>
   <p class="note">Your station code is <strong>a &times; b &times; c &times; d</strong>, using your answers to parts 1&ndash;4 above.</p>
+  <details class="hint">
+    <summary>Hint 1</summary>
+    <p>V<sub>P</sub> = V<sub>PP</sub> / 2.</p>
+  </details>
+  <details class="hint">
+    <summary>Hint 2</summary>
+    <p>V<sub>RMS</sub> (square wave) = V<sub>P</sub>.</p>
+  </details>
+  <details class="hint">
+    <summary>Answer</summary>
+    <p>The answer is 3350 &mdash; see if you can find that on the decode sheet.</p>
+  </details>
 
   </div>
 </div>

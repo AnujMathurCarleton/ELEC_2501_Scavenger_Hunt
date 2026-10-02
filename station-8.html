@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -100,6 +111,18 @@
     <li>Convert <strong>2.46 + j1.72</strong> to polar form: <strong>R&ang;&theta;</strong>.</li>
   </ol>
   <p class="note">Your station code uses <strong>A</strong>, <strong>B</strong>, and <strong>&theta;</strong> from your two answers above, in that order.</p>
+  <details class="hint">
+    <summary>Hint 1</summary>
+    <p>Rectangular &rarr; Polar: R = &radic;(A&sup2; + B&sup2;), &theta; = arctan(B / A).<br>Polar &rarr; Rectangular: A = R cos &theta;, B = R sin &theta;.</p>
+  </details>
+  <details class="hint">
+    <summary>Hint 2</summary>
+    <p>Answers: 6.08&ang;80.54&deg; &approx; 1 + j6. &nbsp; 2.46 + j1.72 &approx; 3&ang;35&deg;.</p>
+  </details>
+  <details class="hint">
+    <summary>Answer</summary>
+    <p>Go to the decoder and look at what the individual numbers (1, 6, and 35) point to for the next location.</p>
+  </details>
 
   </div>
 </div>

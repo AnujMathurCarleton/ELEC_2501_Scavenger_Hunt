@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -101,6 +112,22 @@
     <li><strong>Answer 2:</strong> R4</li>
     <li><strong>Answer 3:</strong> P<sub>V</sub> + P<sub>R1</sub> + P<sub>R2</sub> + P<sub>R3</sub> + P<sub>R4</sub> + 11 = ? (use passive sign convention, and remember Tellegen&rsquo;s theorem)</li>
   </ol>
+  <details class="hint">
+    <summary>Hint 1</summary>
+    <p>Use KCL.</p>
+  </details>
+  <details class="hint">
+    <summary>Hint 2</summary>
+    <p>Use Ohm&rsquo;s law to find R4.</p>
+  </details>
+  <details class="hint">
+    <summary>Hint 3</summary>
+    <p>The sum of all powers is 0, so 0 + 11 = 11.</p>
+  </details>
+  <details class="hint">
+    <summary>Answer</summary>
+    <p>Answer 1 = 35, Answer 2 = 1, Answer 3 = 11 &mdash; leading to 3 clues on the decode sheet for the next location.</p>
+  </details>
 
   </div>
 </div>

@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -96,6 +107,10 @@
 
   <p class="lead">Recall: <strong>V<sub>RMS</sub> = V<sub>p</sub> / &radic;2</strong> for a sine wave, and <strong>V<sub>p</sub> = V<sub>pp</sub> / 2</strong>.</p>
   <p class="lead">A sine wave has a peak-to-peak voltage of <strong>V<sub>pp</sub> = 87.68</strong>. Find <strong>V<sub>RMS</sub></strong>.</p>
+  <details class="hint">
+    <summary>Reveal Answer</summary>
+    <p>V<sub>RMS</sub> = 31. Look for 31 on the decode sheet for the next location.</p>
+  </details>
 
   </div>
 </div>

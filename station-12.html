@@ -59,6 +59,17 @@
     background: var(--accent-soft); border-radius: 10px; padding: 1rem 1.2rem;
     margin: 0 0 1rem;
   }
+  details.hint {
+    background: var(--accent-soft); border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.5; color: var(--text); margin: 0.7rem 0 0;
+  }
+  details.hint summary {
+    cursor: pointer; font-weight: 700; color: var(--accent); list-style: none;
+  }
+  details.hint summary::-webkit-details-marker { display: none; }
+  details.hint summary::before { content: "\25B8\00A0"; }
+  details.hint[open] summary::before { content: "\25BE\00A0"; }
+  details.hint p { margin: 0.5rem 0 0; }
 
   .gate-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
   .gate-wrap .lock { font-size: 2.4rem; margin-bottom: 0.6rem; }
@@ -99,6 +110,18 @@
     <li>Simplify <strong>6&ang;8&deg; / [(1&ang;2&deg;)(3&ang;2&deg;)]</strong>. Give your answer in polar form, R&ang;&theta;.</li>
     <li>Simplify <strong>[5/74 &minus; (7/74)j]<sup>&minus;1</sup></strong>. Give your answer in rectangular form, a + bj.</li>
   </ol>
+  <details class="hint">
+    <summary>Hint 1</summary>
+    <p>Divide the magnitudes and subtract the angles when dividing phasors.</p>
+  </details>
+  <details class="hint">
+    <summary>Hint 2</summary>
+    <p>The second expression's inverse simplifies to 5 + j7.</p>
+  </details>
+  <details class="hint">
+    <summary>Hint 3</summary>
+    <p>Final answers: 2&ang;4&deg; and 5 + j7 &mdash; use these on the decode sheet for the next location. The next location is a bridge between 2 buildings, on the 4th floor.</p>
+  </details>
 
   </div>
 </div>
